@@ -24,7 +24,7 @@ return new class extends Migration
         $table->string('phone', 30)->unique();
         $table->string('description', 100);
         $table->integer('time_used');
-        $table->string('profile_picture', 255);
+        $table->string('profile_picture', 255)->default(0);
         $table->timestamps();
     });
 }

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
+    /** @use HasFactory<\Database\Factories\GroupFactory> */
     use HasFactory;
-
     protected $fillable = [
         'groupName',
         'description',
@@ -18,11 +18,11 @@ class Group extends Model
 
     public function user()
     {
-        return $this->belongsTo(UserAccount::class, 'userid');
+        return $this->hasMany(UserAccount::class, 'userid');
     }
 
     public function character()
     {
-        return $this->belongsTo(Character::class, 'charid');
+        return $this->hasMany(Character::class, 'charid');
     }
 }

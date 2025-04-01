@@ -10,7 +10,7 @@ class AdventureController extends Controller
     public function index()
     {
         $adventures = Adventure::all();
-        return response()->json($adventures);
+        return view('adventures.index',['adventures'=>$adventures]);
     }
 
     public function store(Request $request)

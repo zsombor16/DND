@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@theme{
+
+    --color-background-color: #f8edd6;
+    --color-header-color:#323232;
+    --color-line-color:#6db193;
+    --color-button-hover:#5c9d82;
+    --color-buton:#4b8871;
+    --color-text-yellow:#f4e5c2;
+    --font-display: "Menlo", "sans-serif";
+}

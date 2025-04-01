@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adventure extends Model
 {
+    /** @use HasFactory<\Database\Factories\AdventureFactory> */
     use HasFactory;
-
     protected $fillable = [
         'UserID',
         'Name',
@@ -21,6 +21,13 @@ class Adventure extends Model
 
     public function user()
     {
-        return $this->belongsTo(UserAccount::class, 'UserID');
+        return $this->hasMany(UserAccount::class,  'UserID');
     }
+
+    public function character()
+    {
+        return $this->hasMany(Character::class,  'charid');
+    }
+
+
 }

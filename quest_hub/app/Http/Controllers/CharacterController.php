@@ -9,7 +9,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters = Character::all();
-        return response()->json($characters);
+        return view('characters.index',['characters'=>$characters]);
     }
 
     public function store(Request $request)
@@ -29,10 +29,9 @@ class CharacterController extends Controller
         return response()->json($character, 201);
     }
 
-    public function show($id)
+    public function show(Character $character)
     {
-        $character = Character::findOrFail($id);
-        return response()->json($character);
+        return view('characters.show',['character'=>$character]);
     }
 
     public function update(Request $request, $id)

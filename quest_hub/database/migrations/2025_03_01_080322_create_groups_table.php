@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id('group_id');
         $table->string('group_name', 70);
         $table->string('description', 100);
-        $table->foreignId('user_id')->constrained('user_accounts');
+        $table->foreignId('account_id')->constrained('accounts');
         $table->foreignId('character_id')->constrained('characters');
         $table->timestamps();
     });

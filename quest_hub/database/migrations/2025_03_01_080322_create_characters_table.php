@@ -17,9 +17,8 @@ return new class extends Migration
         $table->string('class', 100);
         $table->string('race', 100);
         $table->integer('character_level');
-        $table->string('player_name', 100);
-        $table->string('character_detail_pdf', 100);
-        $table->foreignId('user_id')->constrained('user_accounts');
+        $table->string('player_name', 100)->nullable();
+
         $table->timestamps();
     });
 }

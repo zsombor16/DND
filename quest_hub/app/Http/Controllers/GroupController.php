@@ -10,7 +10,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = Group::all();
-        return response()->json($groups);
+        return view('groups.index',['groups'=>$groups]);
     }
 
     public function store(Request $request)
