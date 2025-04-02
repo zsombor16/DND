@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('characters', function (Blueprint $table) {
+        Schema::create('account_to_groups', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('account_id')->nullable()->constrained('accounts');
-            $table->foreignId('sheet_id')->nullable()->constrained('char_sheets');
-        });
-        Schema::table('char_sheets', function (Blueprint $table) {
-            $table->foreignId('character_id')->nullable()->constrained('characters');
+            $table->foreignId('group_id')->nullable()->constrained('groups');
         });
     }
 
@@ -25,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('characters', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };
