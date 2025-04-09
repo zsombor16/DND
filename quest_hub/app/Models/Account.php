@@ -30,11 +30,16 @@ class Account extends Model
 
     public function interest()
     {
-        return $this->belongsTo(Interest::class,"interest_id");
+        return $this->belongsTo(Interest::class, "interest_id");
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'account_group');
     }
 
     public function experience()
     {
-        return $this->belongsTo(Experience::class,"experience_id");
+        return $this->belongsTo(Experience::class, "experience_id");
     }
 }

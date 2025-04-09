@@ -228,7 +228,7 @@
 
                     
                     <div class="col-span-2 row-span-1 border-2 border-green-800 text-center">
-                        <select name="class_id" class="w-full bg-[#f8edd6]">
+                        <select name="charclass_id" class="w-full bg-[#f8edd6]">
                             <option value="" disabled> Please choose a class...</option>
                             @foreach ($charclasses as $charclass)
                                 <option value="{{$charclass->id}}">{{$charclass->name}}</option>
@@ -250,7 +250,12 @@
                         Race
                     </div>
                     <div class="col-span-2 row-span-1 border-2 border-green-800 text-center">
-                        {{-- {{$character->charrace->name}} --}}
+                        <select name="charrace_id" class="w-full bg-[#f8edd6]">
+                            <option value="" disabled> Please choose a race...</option>
+                            @foreach ($charraces as $charrace)
+                                <option value="{{$charrace->id}}">{{$charrace->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>

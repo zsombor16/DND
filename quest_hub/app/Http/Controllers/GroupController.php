@@ -4,58 +4,66 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\Account;
 
 class GroupController extends Controller
 {
     public function index()
     {
         $groups = Group::all();
-        return view('groups.index',['groups'=>$groups]);
+        return view('groups.index', compact('groups'));
+    }
+
+    public function create()
+    {
+        return view('groups.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'groupName' => 'required|string|max:70',
+            'group_name' => 'required|string|max:70',
             'description' => 'max:100',
-            'userid' => 'required|exists:user_account,id',
-            'charid' => 'exists:characters,id',
         ]);
 
-        $group = Group::create([
-            'groupName' => $request->groupName,
-            'description' => $request->description,
-            'userid' => $request->userid,
-            'charid' => $request->charid,
-        ]);
+        Group::create($request->only('group_name', 'description'));
 
-        return response()->json($group, 201);
+        return redirect()->route('groups.index')->with('success', 'Group created successfully');
     }
 
     public function show($id)
     {
         $group = Group::findOrFail($id);
-        return response()->json($group);
+        $members = $group->accounts;
+        return view('groups.show', compact('group', 'members'));
+    }
+
+    public function edit($id)
+    {
+        $group = Group::findOrFail($id);
+        return view('groups.edit', compact('group'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'groupName' => 'required|string|max:70',
+            'group_name' => 'required|string|max:70',
             'description' => 'max:100',
-            'userid' => 'required|exists:user_account,id',
-            'charid' => 'exists:characters,id',
+            'username' => 'nullable|string|max:100'
         ]);
 
         $group = Group::findOrFail($id);
-        $group->update([
-            'groupName' => $request->groupName,
-            'description' => $request->description,
-            'userid' => $request->userid,
-            'charid' => $request->charid,
-        ]);
+        $group->update($request->only('group_name', 'description'));
+        if ($request->filled('username')) {
+            $account = Account::where('username', $request->input('username'))->first();
+            if ($account) {
+                $group->accounts()->attach($account->id);
+            } else {
+                return redirect()->back()->withErrors(['username' => 'User not found.']);
+            }
+        }
 
-        return response()->json($group);
+        return redirect()->route('groups.edit',$group->id)->with('success', 'Group updated successfully.');
     }
 
     public function destroy($id)

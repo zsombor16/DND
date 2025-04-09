@@ -10,16 +10,16 @@ use App\Http\Controllers\WelcomeController;
 use App\Models\Adventure;
 use Illuminate\Support\Facades\Route;
 
-Route::get('welcome', function () {
+Route::get('/', function () {
     return view('welcome.php');
 });
 
-Route::resource('/welcome',WelcomeController::class);
-Route::resource('/accounts',AccountController::class);
-Route::resource('/groups',GroupController::class);
-Route::resource('/adventures',AdventureController::class);
-Route::resource('/characters',CharacterController::class);
-Route::resource('/charactersheets',CharSheetController::class);
+Route::resource('welcome',WelcomeController::class);
+Route::resource('accounts',AccountController::class);
+Route::resource('groups',GroupController::class);
+Route::resource('adventures',AdventureController::class);
+Route::resource('characters',CharacterController::class);
+Route::resource('charactersheets',CharSheetController::class);
 
 
 Route::get('/dashboard', function () {

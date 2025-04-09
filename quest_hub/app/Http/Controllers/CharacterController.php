@@ -18,11 +18,11 @@ class CharacterController extends Controller
     }
     public function create()
     {
-        $charclasses  = CharClass::all();
+        $charclasses = CharClass::all();
         $charraces = CharRace::all();
         $charsheet = CharSheet::all();
         $accounts = Account::all();
-        return view('characters.create', ['charsheet' => $charsheet, 'accounts' => $accounts,'races'=>$charraces,'classes'=>$charclasses]);
+        return view('characters.create', ['charsheet' => $charsheet, 'accounts' => $accounts, 'races' => $charraces, 'classes' => $charclasses]);
     }
 
     public function store(Request $request)
@@ -98,11 +98,11 @@ class CharacterController extends Controller
 
     public function edit(Character $character, CharSheet $charsheet)
     {
-        $charclasses  = CharClass::all();
+        $charclasses = CharClass::all();
         $charraces = CharRace::all();
         $charsheet = CharSheet::all();
         $accounts = Account::all();
-        return view('characters.edit', ['character' => $character, 'charsheet' => $charsheet, 'accounts' => $accounts,'charraces'=>$charraces,'charclasses'=>$charclasses]);
+        return view('characters.edit', ['character' => $character, 'charsheet' => $charsheet, 'accounts' => $accounts, 'charraces' => $charraces, 'charclasses' => $charclasses]);
     }
 
     public function update(Request $request, Character $character, CharSheet $charsheet)
@@ -113,9 +113,6 @@ class CharacterController extends Controller
             'class' => 'required|string|max:100',
             'race' => 'required|string|max:100',
             'character_level' => 'required|integer',
-            'player_name' => 'nullable|string|max:100',
-            'character_detail_pdf' => 'nullable|string|max:100',
-            'user_id' => 'nullable|exists:user_accounts,id',
 
 
             //CharSheet fields
@@ -134,14 +131,13 @@ class CharacterController extends Controller
         ]);
         $character->update($request->all());
         $charsheet->update($request->all());
-
-            if ($character->sheet_id) {
-                CharSheet::where('id', $character->sheet_id->update($charsheet));
-            } else {
-                $charSheet = CharSheet::create([$charsheet]);
-                $character->update(['sheet_id' => $charSheet->id]);
-            }
-        return redirect()->route('characters.show', ['character' => $character])->with('succes', "Character update successfully");
+        if ($character->sheet_id) {
+            CharSheet::where('id', $character->sheet_id->update($charsheet));
+        } else {
+            $charSheet = CharSheet::create([$charsheet]);
+            $character->update(['sheet_id' => $charSheet->id]);
+        }
+        return redirect()->route('characters.show', ['character' => $character])->with('succes', "Character updated successfully");
     }
 
     public function destroy($id)

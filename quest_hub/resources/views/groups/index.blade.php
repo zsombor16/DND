@@ -1,6 +1,18 @@
 @extends('layouts.app')
 @section('MainContent')
 <div class="grid grid-flow-row grid-cols-3 max-w-[90vw] gap-8 mt-6 items-center text-center mx-16">
+
+	<h1>Groups</h1>
+<ul>
+    @foreach($groups as $group)
+        <li>
+            <a href="{{ route('groups.show', $group->id) }}">{{ $group->group_name }}</a>
+        </li>
+    @endforeach
+</ul>
+
+
+
     @foreach ($groups as $group)
 
 	<div class=" sm-w-full gap-10 rounded-xl bg-[#5C9D82]">
