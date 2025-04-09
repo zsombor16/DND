@@ -18,8 +18,6 @@ class Account extends Model
         'UserPassword',
         'BirthDate',
         'City',
-        'InterestID',
-        'ExperienceID',
         'Phone',
         'Description',
         'TimeUsed',
@@ -32,11 +30,11 @@ class Account extends Model
 
     public function interest()
     {
-        return $this->belongsTo(Interest::class, 'InterestID');
+        return $this->belongsTo(Interest::class,"interest_id");
     }
 
     public function experience()
     {
-        return $this->belongsTo(Experience::class, 'ExperienceID');
+        return $this->belongsTo(Experience::class,"experience_id");
     }
 }

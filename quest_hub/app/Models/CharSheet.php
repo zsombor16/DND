@@ -23,12 +23,13 @@ class CharSheet extends Model
         'Initiative',
         'Armorclass',
         'Maxhealth',
-        'Currenthealth'
+        'Currenthealth',
+        'character_id'
     ];
 
 
     public function character()
     {
-        return $this->belongsTo(Character::class, 'charid');
+        return $this->belongsTo(Character::class,"character_id");
     }
 }

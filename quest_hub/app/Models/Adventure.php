@@ -21,12 +21,12 @@ class Adventure extends Model
 
     public function user()
     {
-        return $this->hasMany(UserAccount::class,  'UserID');
+        return $this->hasMany(UserAccount::class);
     }
 
     public function character()
     {
-        return $this->hasMany(Character::class,  'charid');
+        return $this->hasMany(Character::class);
     }
 
 

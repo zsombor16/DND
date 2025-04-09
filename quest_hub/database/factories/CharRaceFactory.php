@@ -2,14 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Account;
-use Database\Seeders\AccountSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Character>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CharRace>
  */
-class CharacterFactory extends Factory
+class CharRaceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,11 +16,8 @@ class CharacterFactory extends Factory
      */
     public function definition(): array
     {
-
-
         return [
-            'name' => fake()->name(),
-            'character_level'=>fake()->numberBetween(1,20),
+            //
         ];
     }
 }

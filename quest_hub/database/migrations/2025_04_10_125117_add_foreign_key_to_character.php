@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::table('characters', function (Blueprint $table) {
             $table->foreignId('account_id')->nullable()->constrained('accounts');
             $table->foreignId('sheet_id')->nullable()->constrained('char_sheets');
-        });
-        Schema::table('char_sheets', function (Blueprint $table) {
-            $table->foreignId('character_id')->nullable()->constrained('characters');
+            $table->foreignId('race_id')->nullable()->constrained('char_races');
+            $table->foreignId('class_id')->nullable()->constrained('char_classes');
         });
     }
 

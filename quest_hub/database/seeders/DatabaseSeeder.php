@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\characterAdventurePivotTable;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]); */
 
-        $this->call([AccountSeeder::class, CharacterSeeder::class, CharSheetSeeder::class]);
+        $this->call([AccountSeeder::class, CharacterSeeder::class, CharSheetSeeder::class,]);
     }
 }

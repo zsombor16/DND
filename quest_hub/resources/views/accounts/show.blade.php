@@ -1,4 +1,7 @@
 @extends('layouts.app')
 @section('MainContent')
-d
+<div>
+    
+</div>
+
 @endsection

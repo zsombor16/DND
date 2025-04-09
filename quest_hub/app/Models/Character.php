@@ -13,21 +13,25 @@ class Character extends Model
     protected $fillable = [
         'name',
         'class',
-        'faj',
+        'race',
         'CharacterLevel',
         'PlayerName',
-        'CharacteDetailPDF',
         'userID',
     ];
 
     public function user()
     {
-        return $this->belongsTo(UserAccount::class, 'userID');
+        return $this->belongsTo(Account::class,"account_id");
     }
 
     public function adventure()
     {
-        return $this->belongsTo(Adventure::class, 'adventureid');
+        return $this->belongsTo(Adventure::class);
+    }
+
+    public function charsheet()
+    {
+        return $this->belongsTo(CharSheet::class,"sheet_id");
     }
 
 

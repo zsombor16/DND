@@ -10,18 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
+    {
     Schema::create('characters', function (Blueprint $table) {
         $table->id();
         $table->string('name', 100);
-        $table->string('class', 100);
-        $table->string('race', 100);
         $table->integer('character_level');
         $table->string('player_name', 100)->nullable();
-
         $table->timestamps();
     });
-}
+    }
 
 
     /**
